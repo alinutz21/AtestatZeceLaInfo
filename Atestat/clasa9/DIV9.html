@@ -1,0 +1,160 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Dimension by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Zece La BAC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-brands fa-amazon"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Divizibilitate</h1>
+                </div>
+            </div>
+        </header>
+        <main
+        <section id="divizori">
+            <h2>Divizori ai unui număr</h2>
+            <p>Un <strong>divizor</strong> al unui număr <em>n</em> este orice număr <em>d</em> care împarte <em>n</em> fără a lăsa rest. Pentru a determina toți divizorii unui număr, putem folosi mai multe metode:</p>
+
+            <h3>Metoda 1: Iterație simplă</h3>
+            <p>Verificăm pentru fiecare număr <em>d</em> de la 1 până la <em>n</em> dacă <em>n % d == 0</em>.</p>
+            <pre><code>
+void afisare_divizori1(int n){
+    for(int d = 1; d <= n; ++d)
+        if(n % d == 0)
+            cout << d << ' ';
+}
+            </code></pre>
+
+            <h3>Metoda 2: Până la rădăcina pătrată a lui n</h3>
+            <p>Se iterează doar până la rădăcina pătrată a lui <em>n</em>, iar pentru fiecare divizor găsit, și <em>n / d</em> este un divizor.</p>
+            <pre><code>
+void afisare_divizori2(int n){
+    for(int d = 1; d * d <= n; ++d)
+        if(n % d == 0 && d * d < n)
+            cout << d << ' ' << n / d << ' ';
+        else if(d * d == n)
+            cout << d << ' ';
+}
+            </code></pre>
+        </section>
+
+        <section id="numar-prim">
+            <h2>Număr Prim</h2>
+            <p>Un număr <em>n</em> este <strong>prim</strong> dacă are exact doi divizori: 1 și el însuși.</p>
+
+            <h3>Verificarea unui număr prim</h3>
+            <p>Folosim o metodă de verificare a divizibilității pentru fiecare număr <em>d</em> până la rădăcina pătrată a lui <em>n</em>.</p>
+            <pre><code>
+bool este_prim(int n){
+    if(n <= 1)
+        return false;
+    for(int d = 2; d * d <= n; ++d)
+        if(n % d == 0)
+            return false;
+    return true;
+}
+            </code></pre>
+        </section>
+
+        <section id="cmmdc">
+            <h2>Cel Mai Mare Divizor Comuns (CMMDC)</h2>
+            <p>Cel mai mare divizor comun al a două numere este cel mai mare număr care le divide pe ambele.</p>
+
+            <h3>Algoritmul lui Euclid</h3>
+            <p>Metoda clasică a lui Euclid pentru calcularea CMMDC-ului:</p>
+            <pre><code>
+int cmmdc(int a, int b){
+    while(a != b){
+        if(a > b)
+            a -= b;
+        else b -= a;
+    }
+    return a;
+}
+            </code></pre>
+        </section>
+
+        <section id="factorizare">
+            <h2>Factorizare</h2>
+            <p>Factorizarea unui număr în factori primi presupune descompunerea acestuia ca produs de factori primi.</p>
+
+            <h3>Factorizare simplă</h3>
+            <pre><code>
+void factorizare(int n){
+    int d = 2;
+    while(n > 1){
+        int p = 0;
+        while(n % d == 0)
+            n /= d, p++;
+        if(p != 0)
+            cout << d << '^' << p << '\n';
+        d++;
+        if(d * d > n)
+            d = n;
+    }
+}
+            </code></pre>
+        </section>
+
+        <section id="teorema-legendre">
+            <h2>Teorema lui Legendre</h2>
+            <p>Teorema lui Legendre se folosește pentru a calcula numărul de factori primi într-un număr factorial <em>n!</em> pentru un anumit factor prim.</p>
+            <pre><code>
+int nr_zero_final_fact1(int n){
+    int put2 = 0, put5 = 0;
+    int d2 = 2, d5 = 5;
+    while(d2 <= n){
+        put2 += n / d2;
+        d2 *= 2;
+    }
+    while(d5 <= n){
+        put5 += n / d5;
+        d5 *= 5;
+    }
+    return min(put2, put5);
+}
+            </code></pre>
+        </section>
+        </main>
+
+
+
+
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

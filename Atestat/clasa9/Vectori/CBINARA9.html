@@ -1,0 +1,134 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Căutarea Binara</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-search"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Căutarea Binara</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Introducere în Căutarea Binara</h3>
+            <p>Algoritmul de căutare binară este un exemplu clasic de algoritm cu complexitate <strong>O(log<sub>2</sub>(n))</strong>. Acesta este utilizat pe vectori ordonați pentru:</p>
+            <ul>
+                <li>Determinarea dacă un element există în vector.</li>
+                <li>Găsirea poziției unui element.</li>
+                <li>Calcularea poziției unui element minim sau maxim conform anumitor criterii.</li>
+                <li>Numărarea aparițiilor unui element.</li>
+                <li>Determinarea rădăcinii pătrate sau a părții întregi a radicalului.</li>
+            </ul>
+
+            <h4>1. Verificarea Existenței</h4>
+            <p><em>Cod Iterativ:</em></p>
+            <pre><code>bool cautareBinara(int a[], int n, int val){
+    int st = 1, dr = n;
+    while(st <= dr){
+        int mij = (st + dr) / 2;
+        if(a[mij] == val)
+            return true;
+        else if(a[mij] > val)
+            dr = mij - 1;
+        else st = mij + 1;
+    }
+    return false;
+}</code></pre>
+
+            <p><em>Cod Recursiv:</em></p>
+            <pre><code>bool cautareaBinaraRec(int a[], int st, int dr, int val){
+    if(st > dr)
+        return false;
+    int mij = (st + dr) / 2;
+    if(a[mij] == val)
+        return true;
+    else if(a[mij] > val)
+        return cautareaBinaraRec(a, st, mij-1, val);
+    return cautareaBinaraRec(a, mij+1, dr, val);
+}</code></pre>
+
+            <h4>2. Poziția unui Element</h4>
+            <p><em>Cod Iterativ:</em></p>
+            <pre><code>int cautareBinaraPozitie(int a[], int n, int val){
+    int st = 1, dr = n;
+    while(st <= dr){
+        int mij = (st + dr) / 2;
+        if(a[mij] == val)
+            return mij;
+        else if(a[mij] < val)
+            st = mij + 1;
+        else dr = mij - 1;
+    }
+    return -1;
+}</code></pre>
+
+            <h4>3. Rădăcina unui Număr</h4>
+            <p><em>Cod Iterativ:</em></p>
+            <pre><code>int determinareRadacina(int n){
+    int st = 1, dr = n;
+    while(st <= dr){
+        int mij = (st + dr) / 2;
+        if(mij * mij == n)
+            return mij;
+        else if(mij * mij > n)
+            dr = mij - 1;
+        else st = mij + 1;
+    }
+    return -1;
+}</code></pre>
+
+            <p><em>Cod Recursiv:</em></p>
+            <pre><code>int determinareRadacinaRec(int st, int dr, int n){
+    if(st > dr)
+        return -1;
+    int mij = (st + dr) / 2;
+    if(mij * mij == n)
+        return mij;
+    else if(mij * mij > n)
+        return determinareRadacinaRec(st, mij-1, n);
+    return determinareRadacinaRec(mij+1, dr, n);
+}</code></pre>
+
+            <h4>4. Observații</h4>
+            <ul>
+                <li>Căutarea binară funcționează eficient doar pe vectori ordonați.</li>
+                <li>Implementările iterative sunt mai rapide în practică datorită evitării utilizării stivei de apeluri.</li>
+                <li>Complexitatea logaritmică face algoritmul extrem de eficient pentru seturi mari de date.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

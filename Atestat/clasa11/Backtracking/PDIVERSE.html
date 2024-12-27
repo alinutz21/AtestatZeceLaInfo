@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Generarea Elementelor Combinatoriale</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code-branch"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Generarea Elementelor Combinatoriale</h1>
+                    <p>Explorăm tehnici pentru generarea permutărilor, aranjamentelor, combinărilor, submulțimilor și partițiilor unei mulțimi.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Resurse pentru Probleme</h3>
+            <p>Mai jos sunt linkurile către implementările pentru diferite probleme:</p>
+            <ul>
+                <li><a href="link_catre_problema_aranjamente" target="_blank">Aranjamente</a></li>
+                <li><a href="link_catre_problema_combinari" target="_blank">Combinări</a></li>
+                <li><a href="link_catre_problema_permutari" target="_blank">Permutări</a></li>
+                <li><a href="link_catre_problema_submultimi" target="_blank">Submulțimi</a></li>
+                <li><a href="link_catre_problema_partitii" target="_blank">Partiții</a></li>
+            </ul>
+
+            <h3>1. Permutări</h3>
+            <p>Permutările reprezintă toate rearanjările posibile ale unei mulțimi cu <code>n</code> elemente.</p>
+            <p><strong>Cod:</strong></p>
+            <pre><code>void back(int poz){
+    for(int i = 1; i <= n; ++i){
+        if(P[i] == 0){
+            sol[poz] = i;
+            P[i] = 1;
+            if(poz == n)
+                afis();
+            else back(poz + 1);
+            P[i] = 0;
+        }
+    }
+}</code></pre>
+            <p>Exemplu: Dacă <code>n = 3</code>, permutările sunt <code>1 2 3</code>, <code>1 3 2</code>, etc.</p>
+
+            <!-- Restul conținutului -->
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

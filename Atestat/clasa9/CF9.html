@@ -1,0 +1,189 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Dimension by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Zece La BAC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-brands fa-amazon"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Cifrele unui Număr</h1>
+                </div>
+            </div>
+        </header>
+
+        <article class="element">
+            <h3>Cifrele unui număr</h3>
+            <p>În această secțiune, vom explora diverse funcții care manipulează cifrele unui număr, cum ar fi numărul de cifre, suma cifrelor, oglindirea, palindromurile și altele. Vom utiliza atât funcții iterativ-ciclice (bucla <code>while</code>) cât și funcții recursive.</p>
+
+            <h4>1. Numărul de cifre al unui număr</h4>
+            <p>Pentru a obține numărul de cifre ale unui număr, putem folosi o funcție iterativă sau una recursivă:</p>
+
+            <h5>Funcție Iterativă:</h5>
+            <pre><code>int nr_cif(int n){
+    int cnt = 0;
+    do{
+        cnt++;
+        n /= 10;
+    }while(n != 0);
+    return cnt;
+}</code></pre>
+
+            <h5>Funcție Recursivă:</h5>
+            <pre><code>int nr_cif_rec(int n){
+    if(n <= 9)
+        return 1;
+    return 1 + nr_cif_rec(n / 10);
+}</code></pre>
+
+            <!-- Adăugarea secțiunii de ATENȚIE -->
+            <section class="attention">
+                <h4>!! ATENȚIE !!</h4>
+                <p>La funcția <code>nr_cif</code>, trebuie să fim atenți la cazul în care <code>n</code> este 0 la apelul inițial. Dacă introducem 0, bucla <code>do-while</code> va executa cel puțin o dată, dar în final, valoarea returnată va fi 0, ceea ce nu este corect pentru numărul 0, deoarece numărul 0 are o singură cifră. Ar trebui să gestionăm acest caz separat.</p>
+            </section>
+
+            <h4>2. Suma cifrelor unui număr</h4>
+            <p>Putem obține suma cifrelor unui număr folosind o funcție iterativă sau una recursivă:</p>
+
+            <h5>Funcție Iterativă:</h5>
+            <pre><code>int sum_cif(int n){
+    int sum = 0;
+    while(n != 0){
+        int cif = n % 10;
+        sum += cif;
+        n /= 10;
+    }
+    return sum;
+}</code></pre>
+
+            <h5>Funcție Recursivă:</h5>
+            <pre><code>int sum_cif_rec(int n){
+    if(n == 0)
+        return 0;
+    return n % 10 + sum_cif_rec(n / 10);
+}</code></pre>
+
+            <h4>3. Oglindirea unui număr</h4>
+            <p>O funcție care inversează cifrele unui număr, de exemplu pentru 1234 va returna 4321:</p>
+            <pre><code>int oglindit(int n){
+    int ogl = 0;
+    while(n != 0){
+        int cif = n % 10;
+        ogl = ogl * 10 + cif;
+        n /= 10;
+    }
+    return ogl;
+}</code></pre>
+
+            <p>
+                De asemenea, este important de reținut că:<br>
+                <strong>oglindit(oglindit(n))</strong> nu este întotdeauna egal cu <strong>n</strong>. Exemplu: <br>
+                <strong>oglindit(oglindit(1230)) = oglindit(321) = 123 != 1230</strong>
+            </p>
+
+            <h4>4. Verificarea dacă un număr este palindrom</h4>
+            <p>Un număr este palindrom dacă se citește la fel de la stânga la dreapta și de la dreapta la stânga. Funcția de mai jos verifică dacă un număr este palindrom:</p>
+            <pre><code>bool palindrom(int n){
+    return n == oglindit(n);
+}</code></pre>
+
+            <h4>5. Ștergerea cifrelor pare dintr-un număr</h4>
+            <p>Această funcție elimină toate cifrele pare dintr-un număr:</p>
+            <pre><code>int stergere_cifre_pare(int n){
+    int nr_nou = 0, p = 1;
+    while(n != 0){
+        int cif = n % 10;
+        if(cif % 2 != 0){
+            nr_nou = nr_nou + cif * p;
+            p *= 10;
+        }
+        n /= 10;
+    }
+    return nr_nou;
+}</code></pre>
+
+            <h4>6. Dublarea cifrelor pare</h4>
+            <p>Funcția de mai jos dublează fiecare cifră pară într-un număr:</p>
+            <pre><code>int dublare_cifre_pare(int n){
+    int nr_nou = 0, p = 1;
+    while(n != 0){
+        int cif = n % 10;
+        if(cif % 2 == 0){
+            nr_nou = nr_nou + cif * p;
+            p *= 10;
+        }
+        nr_nou = nr_nou + cif * p;
+        p *= 10;
+        n /= 10;
+    }
+    return nr_nou;
+}</code></pre>
+
+            <h4>7. Interschimbarea cifrelor</h4>
+            <p>Această funcție interschimbă perechi de cifre consecutive într-un număr:</p>
+            <pre><code>int interschimbare_cifre(int n){
+    int nr_nou = 0, p = 1;
+    while(n != 0){
+        int cif1 = n % 10;
+        int cif2 = (n / 10) % 10;
+        nr_nou = nr_nou + cif2 * p;
+        p *= 10;
+        nr_nou = nr_nou + cif1 * p;
+        p *= 10;
+        n /= 100;
+    }
+    return nr_nou;
+}</code></pre>
+
+            <h4>8. Interschimbarea cifrelor (varianta recursivă)</h4>
+            <p>O variantă recursivă a funcției de interschimbare a cifrelor:</p>
+            <pre><code>int interschimbare_cifre_rec(int n){
+    if(n == 0)
+        return 0;
+    int cif1 = n % 10;
+    int cif2 = (n / 10) % 10;
+    return interschimbare_cifre_rec(n / 100) * 100 + cif1 * 10 + cif2;
+}</code></pre>
+
+        </article>
+
+
+
+
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

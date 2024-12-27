@@ -1,0 +1,115 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Combinatorică - Aranjamente, Permutări, Combinări</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-math"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Combinatorică</h1>
+                    <p>Concepte fundamentale precum aranjamente, permutări și combinări, explicate cu formule și implementări în C++.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Aranjamente</h3>
+            <p>Aranjamentele reprezintă submulțimi ordonate de <code>k</code> elemente selectate dintr-o mulțime de <code>n</code> elemente.</p>
+            <p><strong>Formula:</strong></p>
+            <pre><code>A<sup>k</sup><sub>n</sub> = n! / (n-k)! = (n-k+1) * ... * n</code></pre>
+            <p><strong>Implementare C++:</strong></p>
+            <pre><code>int Aranjamente(int n, int k){
+    int prod = 1;
+    for(int i = n - k + 1; i <= n; ++i)
+        prod *= i;
+    return prod;
+}</code></pre>
+
+            <h3>2. Permutări</h3>
+            <p>Permutările sunt aranjamentele tuturor elementelor dintr-o mulțime. O permutare este o rearanjare a elementelor.</p>
+            <p><strong>Formula:</strong></p>
+            <pre><code>P<sub>n</sub> = n!</code></pre>
+            <p><strong>Implementare Recursivă:</strong></p>
+            <pre><code>int Permutari(int n){
+    if(n <= 1)
+        return 1;
+    return n * Permutari(n - 1);
+}</code></pre>
+
+            <h3>3. Combinări</h3>
+            <p>Combinările reprezintă submulțimi neordonate de <code>k</code> elemente selectate dintr-o mulțime de <code>n</code> elemente.</p>
+            <p><strong>Formula:</strong></p>
+            <pre><code>C<sup>k</sup><sub>n</sub> = A<sup>k</sup><sub>n</sub> / k! = n! / (k!(n-k)!)</code></pre>
+            <p><strong>Formula Recurentă (Triunghiul lui Pascal):</strong></p>
+            <pre><code>C<sup>k</sup><sub>n</sub> = C<sup>k-1</sup><sub>n-1</sub> + C<sup>k</sup><sub>n-1</sub></code></pre>
+            <p><strong>Implementare C++:</strong></p>
+            <pre><code>int Combinari1(int n, int k){
+    if(k == 0 || k == n)
+        return 1;
+    return Combinari1(n-1, k-1) + Combinari1(n-1, k);
+}</code></pre>
+
+            <h3>4. Triunghiul lui Pascal</h3>
+            <p>Triunghiul lui Pascal este o reprezentare grafică a coeficienților binomiali:</p>
+            <pre><code>        1
+       1 1
+      1 2 1
+     1 3 3 1
+    1 4 6 4 1</code></pre>
+            <p><strong>Generare în C++:</strong></p>
+            <pre><code>void generareTriunghiPascal(int n){
+    for(int i = 0; i <= n; ++i)
+        for(int j = 0; j <= i; ++j)
+            if(i == j || j == 0)
+                C[i][j] = 1;
+            else C[i][j] = C[i-1][j-1] + C[i-1][j];
+}</code></pre>
+
+            <h3>5. Submulțimi</h3>
+            <p>Numărul total de submulțimi al unei mulțimi cu <code>n</code> elemente este <code>2^n</code>.</p>
+            <p><strong>Implementare C++:</strong></p>
+            <pre><code>int NrSubmultimi(int n){
+    return 1 << n; // 2^n
+}</code></pre>
+
+            <h3>6. Observații</h3>
+            <ul>
+                <li>Funcțiile iterative sunt mai rapide decât cele recursive, dar ocupă mai mult cod.</li>
+                <li>Rezultatele intermediare pot cauza <strong>overflow</strong>, motiv pentru care este recomandată utilizarea funcțiilor optimizate.</li>
+                <li>Principiul memorizării poate accelera calculul combinărilor.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

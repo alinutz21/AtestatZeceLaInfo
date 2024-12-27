@@ -1,0 +1,125 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Divide et Impera - MergeSort și QuickSort</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>MergeSort și QuickSort</h1>
+                    <p>Algoritmi Divide et Impera pentru sortarea eficientă a vectorilor: MergeSort și QuickSort.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Merge Sort</h3>
+            <p><strong>Descriere:</strong> Merge Sort este un algoritm de sortare care utilizează tehnica Divide et Impera pentru a împărți vectorul în subvectori, îi sortează separat și apoi îi interclasează.</p>
+            <h5>Cod:</h5>
+            <pre><code>void mergeSort(int a[], int st, int dr){
+    if(st < dr){
+        int mij = (st + dr) / 2;
+        mergeSort(a, st, mij);
+        mergeSort(a, mij+1, dr);
+        int indc = 0, ind1 = st, ind2 = mij + 1;
+        while(ind1 <= mij && ind2 <= dr)
+            if(a[ind1] <= a[ind2])
+                c[++indc] = a[ind1++];
+            else c[++indc] = a[ind2++];
+        while(ind1 <= mij)
+            c[++indc] = a[ind1++];
+        while(ind2 <= dr)
+            c[++indc] = a[ind2++];
+        for(int i = 1; i <= indc; ++i)
+            a[st + i - 1] = c[i];
+    }
+}</code></pre>
+            <p><strong>Complexitate:</strong> <code>O(n log n)</code>.</p>
+
+            <h3>2. Quick Sort</h3>
+            <p><strong>Descriere:</strong> Quick Sort utilizează un element pivot pentru a împărți vectorul în două subvectori: unul cu elemente mai mici decât pivotul și altul cu elemente mai mari.</p>
+            <h5>Cod:</h5>
+            <pre><code>void quickSort(int a[], int st, int dr){
+    if(st < dr){
+        int poz = partitionare_rapida(a, st, dr);
+        quickSort(a, st, poz-1);
+        quickSort(a, poz+1, dr);
+    }
+}
+
+int partitionare_rapida(int a[], int st, int dr){
+    int poz = st;
+    for(int i = st; i < dr; ++i)
+        if(a[i] < a[dr]){
+            swap(a[i], a[poz]);
+            poz++;
+        }
+    swap(a[poz], a[dr]);
+    return poz;
+}</code></pre>
+            <p><strong>Complexitate:</strong> <code>O(n log n)</code> în caz mediu, <code>O(n^2)</code> în cel mai rău caz.</p>
+
+            <h3>3. Exemple Practice</h3>
+            <h4>a) Utilizarea MergeSort</h4>
+            <pre><code>int a[100001], n;
+cin >> n;
+for(int i = 1; i <= n; ++i)
+    cin >> a[i];
+
+mergeSort(a, 1, n);
+
+for(int i = 1; i <= n; ++i)
+    cout << a[i] << ' ';</code></pre>
+
+            <h4>b) Utilizarea QuickSort</h4>
+            <pre><code>int a[100001], n;
+cin >> n;
+for(int i = 1; i <= n; ++i)
+    cin >> a[i];
+
+quickSort(a, 1, n);
+
+for(int i = 1; i <= n; ++i)
+    cout << a[i] << ' ';</code></pre>
+
+            <h3>4. Observații</h3>
+            <ul>
+                <li>MergeSort este mai stabil decât QuickSort și nu depinde de alegerea pivotului.</li>
+                <li>QuickSort este mai rapid în practică pentru mulțimi de date mari, dar poate fi ineficient pe vectori aproape ordonați fără optimizări.</li>
+                <li>Complexitatea ambilor algoritmi în caz mediu este <strong>O(n log n)</strong>.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

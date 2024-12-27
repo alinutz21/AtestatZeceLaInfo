@@ -1,0 +1,110 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Siruri de Caractere</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-font"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Siruri de Caractere</h1>
+                    <p>Explorăm conceptul de șiruri de caractere, funcțiile predefinite și aplicații practice folosind biblioteca <code>cstring</code>.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Ce sunt Sirurile de Caractere?</h3>
+            <p>Un șir de caractere este o secvență de caractere terminată cu caracterul <code>'\0'</code> (NULL). Acest caracter marchează sfârșitul șirului în memorie.</p>
+            <ul>
+                <li><strong>Codurile ASCII:</strong> Fiecare caracter are asociat un cod ASCII unic.</li>
+                <li>
+                    <strong>Funcții de bază pentru caractere:</strong>
+                    <ul>
+                        <li><code>isalpha(ch)</code> – Verifică dacă un caracter este literă.</li>
+                        <li><code>isdigit(ch)</code> – Verifică dacă un caracter este cifră.</li>
+                        <li><code>tolower(ch)</code> – Transformă literele mari în mici.</li>
+                        <li><code>toupper(ch)</code> – Transformă literele mici în mari.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2. Funcții pentru Prelucrarea Sirurilor</h3>
+            <ul>
+                <li><code>strlen(s)</code> – Returnează lungimea șirului.</li>
+                <li><code>strcpy(dest, src)</code> – Copiază un șir în altul.</li>
+                <li><code>strcat(dest, src)</code> – Concatenează două șiruri.</li>
+                <li><code>strcmp(a, b)</code> – Compară două șiruri alfabetic.</li>
+                <li><code>strchr(s, ch)</code> – Returnează prima apariție a unui caracter.</li>
+                <li><code>strstr(s, a)</code> – Caută un șir în alt șir.</li>
+                <li><code>strtok(s, sep)</code> – Împarte șirul în cuvinte folosind separatori.</li>
+            </ul>
+
+            <h4>3. Exemple de Utilizare</h4>
+            <h5>a) Calcularea Lungimii unui Sir</h5>
+            <pre><code>char s[] = "Ana are mere";
+cout << "Lungime: " << strlen(s);</code></pre>
+
+            <h5>b) Copiere și Concatenație</h5>
+            <pre><code>char dest[256], src[256];
+strcpy(dest, "Salut ");
+strcat(dest, "lume!");
+cout << dest; // Salut lume!</code></pre>
+
+            <h5>c) Împărțirea unui Text în Cuvinte</h5>
+            <pre><code>char s[] = "Ana are mere, portocale si banane!";
+char sep[] = " ,!";
+char *p = strtok(s, sep);
+while(p){
+    cout << p << endl;
+    p = strtok(NULL, sep);
+}</code></pre>
+            <p><strong>Rezultat:</strong> Ana<br>are<br>mere<br>portocale<br>si<br>banane</p>
+
+            <h3>4. Observații</h3>
+            <ul>
+                <li><strong>Caracterele și șirurile:</strong> Fiecare operație se bazează pe manipularea memoriei.</li>
+                <li><strong>Funcția <code>strtok</code>:</strong> Modifică șirul original.</li>
+                <li><strong>Operații frecvente:</strong> Verificări, căutări și transformări în șiruri.</li>
+            </ul>
+
+            <h4>5. Aplicații Practice</h4>
+            <ul>
+                <li>Procesarea textelor.</li>
+                <li>Identificarea cuvintelor cheie.</li>
+                <li>Compararea șirurilor pentru sortare sau căutare.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

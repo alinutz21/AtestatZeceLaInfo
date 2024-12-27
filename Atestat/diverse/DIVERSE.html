@@ -1,0 +1,108 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Diverse - Ghidul Programării</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+    <style>
+        #timer {
+            
+            font-size: 1.5em;
+            margin-top: 20px;
+           
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-laptop-code"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Secțiunea Diverse</h1>
+                    <p>Descoperă informații utile, resurse pentru aprofundare, curiozități despre lumea programării și tot ce trebuie să știi pentru Bacalaureatul la Informatică.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Timer până la Bacalaureatul la Informatică</h3>
+            <p>Mai sunt exact:</p>
+            <div id="timer"></div>
+
+            <h3>2. Importanța Programării</h3>
+            <p>Programarea dezvoltă gândirea analitică, creativitatea și capacitatea de a rezolva probleme complexe. Este o abilitate esențială într-o lume digitală, aplicabilă în orice domeniu.</p>
+
+            <h3>3. Bacalaureatul la Informatică</h3>
+            <p>Examenul de Bacalaureat la Informatică este o oportunitate de a demonstra abilitățile acumulate în programare și gândire logică. Iată ce trebuie să știi:</p>
+
+            <h4>Structura Examenului</h4>
+            <ul>
+                <li><strong>Subiectul 1:</strong> Teorie – include întrebări despre structuri de date, algoritmi și concepte fundamentale.</li>
+                <li><strong>Subiectul 2:</strong> Probleme practice, cum ar fi manipularea vectorilor, matricilor sau șirurilor de caractere.</li>
+                <li><strong>Subiectul 3:</strong> Algoritmi avansați (backtracking, programare dinamică, grafuri).</li>
+            </ul>
+
+            <h3>4. Resurse Generale pentru Învățare și inspirație pentru materialul din acest site.</h3>
+            <ul>
+                <li><a href="https://www.zecelaexamene.ro/index.php" target="_blank">Academia: Zece La Examene</a></li>
+                <li><a href="https://www.pbinfo.ro/" target="_blank">PBINFO</a></li>
+                <li><a href="https://www.infoarena.ro/" target="_blank">INFOARENA</a></li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Timer Script -->
+    <script>
+        // Set the date of the Bacalaureat
+        const bacDate = new Date("2025-06-13T09:00:00").getTime(); // Ajustează data aici
+
+        // Update the countdown every 1 second
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = bacDate - now;
+
+            // Calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result
+            document.getElementById("timer").innerHTML = `${days} zile, ${hours} ore, ${minutes} minute, ${seconds} secunde`;
+
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("timer").innerHTML = "Examenul de Bacalaureat a început!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

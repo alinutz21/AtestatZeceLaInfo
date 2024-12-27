@@ -1,0 +1,120 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Subprograme - Clasele a 10-a</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Subprograme</h1>
+                    <p>În această lecție, discutăm despre subprograme care întorc valori prin parametri și oferim exemple practice.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Introducere</h3>
+            <p>Subprogramele reprezintă blocuri de cod care realizează operații specifice și pot modifica valorile variabilelor primite prin parametri.</p>
+
+            <h4>1. Subprogram pentru Adăugare</h4>
+            <p>Subprogramul <code>adaugare</code> primește doi parametri, adaugă valoarea celui de-al doilea parametru la primul și actualizează valoarea acestuia.</p>
+            <h5>Cod:</h5>
+            <pre><code>void adaugare(int &a, int b){
+    a += b;
+}</code></pre>
+
+            <h4>2. Subprogram pentru Ștergerea Cifrelor Pare</h4>
+            <p>Subprogramul <code>stergere_cifre_pare</code> elimină cifrele pare dintr-un număr primit prin parametru și returnează rezultatul actualizat.</p>
+            <h5>Cod:</h5>
+            <pre><code>void stergere_cifre_pare(int &n){
+    int nr_nou = 0, p = 1;
+    while(n != 0){
+        int cif = n % 10;
+        if(cif % 2 == 1){
+            nr_nou = nr_nou + cif * p;
+            p *= 10;
+        }
+        n /= 10;
+    }
+    n = nr_nou;
+}</code></pre>
+
+            <h4>3. Subprograme pentru Citire</h4>
+            <p><code>citesteNumere</code> citește două numere întregi, iar <code>citesteNumar</code> citește un singur număr întreg.</p>
+            <h5>Cod:</h5>
+            <pre><code>void citesteNumere(int &a, int &b){
+    cin >> a >> b;
+}
+
+void citesteNumar(int &n){
+    cin >> n;
+}</code></pre>
+
+            <h4>4. Subprogram pentru Afișare</h4>
+            <p><code>afisareValoare</code> afișează valoarea unui număr întreg primit ca parametru.</p>
+            <h5>Cod:</h5>
+            <pre><code>void afisareValoare(int a){
+    cout << a << ' ';
+}</code></pre>
+
+            <h4>5. Exemplu Practic</h4>
+            <p>Un exemplu complet care utilizează toate subprogramele:</p>
+            <h5>Cod:</h5>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int a, b, n;
+
+    citesteNumere(a, b); // Citim două numere
+    citesteNumar(n);     // Citim un alt număr
+
+    adaugare(a, b);      // Adunăm b la a
+    stergere_cifre_pare(n); // Ștergem cifrele pare din n
+
+    afisareValoare(a);   // Afișăm valoarea lui a
+    afisareValoare(n);   // Afișăm valoarea lui n
+
+    return 0;
+}</code></pre>
+
+            <h4>6. Observații</h4>
+            <ul>
+                <li>Toate subprogramele utilizează parametri prin referință pentru a actualiza valorile direct în memoria variabilelor apelante.</li>
+                <li>Subprogramele sunt reutilizabile, ceea ce face codul mai modular și mai clar.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

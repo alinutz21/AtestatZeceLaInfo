@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Teoria Grafurilor</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-project-diagram"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Teoria Grafurilor</h1>
+                    <p>Explorarea conceptelor fundamentale ale grafurilor, incluzând grafuri parțiale, subgrafuri, grafuri complete și complementare.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Grafuri Parțiale și Subgrafuri</h3>
+            <p>Un <strong>graf parțial</strong> este derivat dintr-un graf original prin eliminarea unor muchii, păstrând aceleași noduri. Numărul de grafuri parțiale ce pot fi generate dintr-un graf complet cu \( n \) noduri este:</p>
+            <pre><code>2^m</code></pre>
+            <p>unde \( m \) reprezintă numărul total de muchii.</p>
+            <p>Un <strong>subgraf</strong> este derivat prin eliminarea unor noduri și a muchiilor asociate acestora. Numărul de subgrafuri ce pot fi generate este:</p>
+            <pre><code>2^n - 1</code></pre>
+            <p>unde \( n \) este numărul de noduri, excluzând subgraful gol.</p>
+
+            <h3>2. Graf Complet</h3>
+            <p>Un <strong>graf complet</strong>, notat \( K_n \), este un graf în care fiecare pereche de noduri este conectată printr-o muchie. Numărul total de muchii este dat de formula:</p>
+            <pre><code>m = n * (n - 1) / 2</code></pre>
+            <p>Exemplu: Pentru un graf complet cu 4 noduri, numărul total de muchii este:</p>
+            <pre><code>m = 4 * (4 - 1) / 2 = 6</code></pre>
+
+            <h3>3. Graf Complet Orientat</h3>
+            <p>Un <strong>graf complet orientat</strong> este o extensie a grafului complet, unde fiecare muchie este direcționată. Numărul de muchii într-un graf complet orientat cu \( n \) noduri este:</p>
+            <pre><code>m = n * (n - 1)</code></pre>
+            <p>Acesta include toate perechile ordonate de noduri.</p>
+
+            <h3>4. Graf Complementar</h3>
+            <p>Graful complementar al unui graf \( G \) include toate nodurile din \( G \), dar numai acele muchii care nu sunt prezente în \( G \). Numărul de muchii în graful complementar este:</p>
+            <pre><code>m_{comp} = n * (n - 1) / 2 - m</code></pre>
+
+            <h3>5. Generarea Combinatorică în Grafuri</h3>
+            <p>Generarea combinatorică implică crearea tuturor grafurilor parțiale, subgrafurilor sau grafurilor complementare pe baza unui graf dat.</p>
+            <ul>
+                <li><strong>Grafuri parțiale:</strong> Alegerea unui subset de muchii.</li>
+                <li><strong>Subgrafuri:</strong> Alegerea unui subset de noduri și a muchiilor asociate.</li>
+                <li><strong>Grafuri complementare:</strong> Crearea unui graf care conține toate muchiile lipsă din graful original.</li>
+            </ul>
+
+            <h3>6. Observații</h3>
+            <ul>
+                <li>Grafurile sunt utilizate pentru modelarea relațiilor dintre entități în diverse domenii.</li>
+                <li>Generarea combinatorică a grafurilor este esențială pentru analiza structurală și optimizare.</li>
+                <li>Grafurile complete și complementare au aplicații în rețele, algoritmi de rutare și planificare.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

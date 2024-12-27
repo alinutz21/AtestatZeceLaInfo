@@ -1,0 +1,116 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Subprograme - Funcții care Returnează Valori</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-square-root-alt"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Subprograme - Funcții care Returnează Valori</h1>
+                    <p>În această lecție, analizăm funcții care calculează și returnează valori în diferite formate și utilizări.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Introducere</h3>
+            <p>Funcțiile sunt subprograme care efectuează calcule specifice și returnează rezultatul. Ele pot avea parametri de intrare și întotdeauna un tip de retur definit.</p>
+
+            <h4>1. Funcția pentru Sumă</h4>
+            <p><code>suma</code> returnează suma a două sau trei numere.</p>
+            <h5>Cod pentru 2 numere:</h5>
+            <pre><code>int suma(int a, int b){
+    return a + b;
+}</code></pre>
+            <h5>Cod pentru 3 numere:</h5>
+            <pre><code>int suma(int a, int b, int c){
+    return a + b + c;
+}</code></pre>
+
+            <h4>2. Funcția pentru Verificarea Parității</h4>
+            <p><code>este_par</code> verifică dacă un număr întreg este par.</p>
+            <h5>Cod:</h5>
+            <pre><code>bool este_par(int n){
+    return n % 2 == 0;
+}</code></pre>
+            <p><strong>Observație:</strong> Returnează <code>true</code> dacă numărul este par, altfel <code>false</code>.</p>
+
+            <h4>3. Funcția pentru Puteri</h4>
+            <p><code>a_la_b</code> calculează puterea unui număr întreg <code>a</code> ridicat la o putere <code>b</code>.</p>
+            <h5>Cod:</h5>
+            <pre><code>long long a_la_b(int a, int b){
+    long long prod = 1;
+    for(int i = 1; i <= b; ++i)
+        prod = prod * a;
+    return prod;
+}</code></pre>
+
+            <h4>4. Funcția pentru Jumătate</h4>
+            <p><code>jumatate</code> calculează jumătatea unui număr întreg și returnează rezultatul ca număr zecimal.</p>
+            <h5>Cod:</h5>
+            <pre><code>double jumatate(int n){
+    double jum = 0.5 * n;
+    return jum;
+}</code></pre>
+
+            <h4>5. Exemplu Practic</h4>
+            <p>Un exemplu complet care utilizează toate funcțiile:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int a = 5, b = 10, c = 3;
+
+    cout << "Suma a + b: " << suma(a, b) << endl;
+    cout << "Suma a + b + c: " << suma(a, b, c) << endl;
+
+    cout << "a este par? " << (este_par(a) ? "Da" : "Nu") << endl;
+
+    cout << "a ridicat la b: " << a_la_b(a, b) << endl;
+
+    cout << "Jumatate din a: " << jumatate(a) << endl;
+
+    return 0;
+}</code></pre>
+
+            <h4>6. Observații</h4>
+            <ul>
+                <li>Funcțiile utilizează tipuri de retur adecvate scopului lor: <code>int</code>, <code>bool</code>, <code>long long</code>, <code>double</code>.</li>
+                <li>Aceste funcții pot fi utilizate pentru a modulariza codul și pentru a evita repetarea logicii.</li>
+                <li>În funcția <code>a_la_b</code>, complexitatea este <strong>O(b)</strong>.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

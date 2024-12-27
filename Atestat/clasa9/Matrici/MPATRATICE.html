@@ -1,0 +1,115 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Matrici Pătratice</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-border-all"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Matrici Pătratice</h1>
+                    <p>În această secțiune, explorăm concepte legate de diagonale, zone și simetrie în matricile pătratice.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Definiție</h3>
+            <p>O matrice pătratică este o matrice în care numărul de linii este egal cu numărul de coloane (<code>n == m</code>).</p>
+            <pre><code>int a[101][101]; // Matrice pătratică 101x101</code></pre>
+
+            <h4>1. Diagonalele unei Matrici</h4>
+            <p>O matrice pătratică are două diagonale principale:</p>
+            <ul>
+                <li><strong>Diagonala principală:</strong> Elemente pentru care <code>i == j</code>.</li>
+                <li><strong>Diagonala secundară:</strong> Elemente pentru care <code>i + j == n + 1</code> (indexare de la 1) sau <code>i + j == n - 1</code> (indexare de la 0).</li>
+            </ul>
+            <p><strong>Exemplu:</strong></p>
+            <pre><code>n = 4
+Matricea:
+x 0 0 x
+0 x x 0
+0 x x 0
+x 0 0 x</code></pre>
+
+            <h4>2. Zonele Matricii</h4>
+            <p>Matricea poate fi împărțită în 4 zone față de diagonalele principale:</p>
+            <ul>
+                <li><strong>ZONA 1:</strong> Deasupra diagonalei principale și deasupra diagonalei secundare.</li>
+                <li><strong>ZONA 2:</strong> Deasupra diagonalei principale și sub diagonala secundară.</li>
+                <li><strong>ZONA 3:</strong> Sub diagonala principală și sub diagonala secundară.</li>
+                <li><strong>ZONA 4:</strong> Sub diagonala principală și deasupra diagonalei secundare.</li>
+            </ul>
+            <pre><code>int s = 0;
+// Calculul sumei elementelor din Zona 1 (indexare de la 1)
+for(int i = 1; i <= n / 2; ++i)
+    for(int j = i + 1; j < n - i + 1; ++j)
+        s += a[i][j];</code></pre>
+
+            <h4>3. Simetria în Matrice</h4>
+            <p>Simetria poate fi determinată față de diverse elemente:</p>
+            <ul>
+                <li><strong>Linia mediană:</strong> <code>a[i][j] -> a[n-i+1][j]</code> (indexare de la 1).</li>
+                <li><strong>Coloana mediană:</strong> <code>a[i][j] -> a[i][n-j+1]</code> (indexare de la 1).</li>
+                <li><strong>Diagonala principală:</strong> <code>a[i][j] -> a[j][i]</code>.</li>
+                <li><strong>Diagonala secundară:</strong> <code>a[i][j] -> a[n-j+1][n-i+1]</code> (indexare de la 1).</li>
+            </ul>
+
+            <h4>4. Determinarea Elementelor de Pe Diagonale</h4>
+            <p>Numărul total de elemente care aparțin ambelor diagonale:</p>
+            <pre><code>int nr_diagonale = 2 * n - (n % 2);</code></pre>
+
+            <h4>5. Exemplu Practic</h4>
+            <p>Un exemplu complet care include citirea unei matrici și calcularea sumei elementelor dintr-o zonă:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int a[101][101], n;
+    cin >> n;
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= n; ++j)
+            cin >> a[i][j];
+
+    int s = 0;
+    for(int i = 1; i <= n / 2; ++i)
+        for(int j = i + 1; j < n - i + 1; ++j)
+            s += a[i][j];
+
+    cout << "Suma Zonei 1: " << s << endl;
+    return 0;
+}</code></pre>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

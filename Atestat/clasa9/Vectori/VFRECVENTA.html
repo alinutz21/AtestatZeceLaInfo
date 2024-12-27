@@ -1,0 +1,132 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Vectori Caracteristici și de Frecvență</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-chart-bar"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Vectori Caracteristici și de Frecvență</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Introducere</h3>
+            <p>În această secțiune, vom explora utilizarea vectorilor pentru stocarea caracteristicilor și frecvențelor, alături de algoritmi asociați cum ar fi Counting Sort și Ciurul lui Eratostene.</p>
+
+            <h4>1. Vectori Caracteristici</h4>
+            <p>Vectorii caracteristici stochează informații despre proprietăți specifice ale valorilor.</p>
+            <pre><code>bool C[1000001]; // Exemplu: C[x] = true dacă x respectă proprietatea</code></pre>
+            <p>Exemplu: Calcularea numărului de cifre distincte într-un șir.</p>
+            <pre><code>bool C[10];
+int nr_cif_distincte(int a[], int n){
+    for(int i = 1; i <= n; ++i)
+        C[a[i]] = true;
+    int cnt = 0;
+    for(int i = 0; i <= 9; ++i)
+        if(C[i])
+            cnt++;
+    return cnt;
+}</code></pre>
+
+            <h4>2. Vectori de Frecvență</h4>
+            <p>Vectorii de frecvență stochează numărul de apariții ale fiecărei valori într-un șir.</p>
+            <pre><code>int F[1000001]; // Exemplu: F[x] = numărul de apariții ale lui x</code></pre>
+            <p>Exemplu: Counting Sort</p>
+            <pre><code>void countingSort(int a[], int n){
+    for(int i = 1; i <= n; ++i)
+        F[a[i]]++;
+    n = 0;
+    for(int i = 0; i <= 1000000; ++i)
+        while(F[i] != 0)
+            a[++n] = i, F[i]--;
+}</code></pre>
+
+            <h4>3. Ciurul lui Eratostene</h4>
+            <p>Algoritmul clasic pentru calcularea numerelor prime până la un număr <code>n</code>.</p>
+            <pre><code>bool ciur[1000001];
+int prime[80001], nr_prime = 0;
+
+void erathostene(int n){
+    ciur[1] = ciur[0] = true;
+    for(int i = 2; i * i <= n; ++i)
+        if(!ciur[i])
+            for(int j = i; i * j <= n; ++j)
+                ciur[i * j] = true;
+    for(int i = 2; i <= n; ++i)
+        if(!ciur[i])
+            prime[++nr_prime] = i;
+}</code></pre>
+
+            <h4>4. Factorizarea Numerelor</h4>
+            <p>Utilizând Ciurul lui Eratostene, putem efectua factorizarea eficientă a unui număr.</p>
+            <pre><code>void factorizare_ciur(int n){
+    int indp = 1;
+    while(n > 1){
+        int p = 0;
+        while(n % prime[indp] == 0)
+            n /= prime[indp], p++;
+        if(p)
+            cout << prime[indp] << '^' << p << '\\n';
+        indp++;
+        if(prime[indp] * prime[indp] > n){
+            if(n > 1)
+                cout << n << '^' << 1;
+            n = 1;
+        }
+    }
+}</code></pre>
+
+            <h4>5. Verificarea Numerelor Prime</h4>
+            <p>O funcție eficientă pentru verificarea primalității folosind vectorul de numere prime generat.</p>
+            <pre><code>bool este_prim_ciur(int n){
+    if(n == 0 || n == 1)
+        return false;
+    for(int i = 1; prime[i] * prime[i] <= n; ++i)
+        if(n % prime[i] == 0)
+            return false;
+    return true;
+}</code></pre>
+
+            <h4>6. Observații</h4>
+            <ul>
+                <li><strong>Vectori Caracteristici:</strong> Ideali pentru verificări rapide.</li>
+                <li><strong>Vectori de Frecvență:</strong> Eficienți pentru sortare și numărare.</li>
+                <li><strong>Ciurul lui Eratostene:</strong> Complexitate <code>O(n log n)</code>.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

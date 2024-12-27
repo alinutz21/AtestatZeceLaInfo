@@ -1,0 +1,145 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Dimension by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Zece La BAC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-brands fa-amazon"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Elemente de baza a limbajului C++</h1>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="intro">
+                <h2>Ce este C++?</h2>
+                <p>C++ este un limbaj de programare de nivel înalt, folosit pentru a dezvolta aplicații software de orice tip, de la aplicații desktop la jocuri și sisteme complexe. C++ este un limbaj cu tipuri de date statice și permite manipularea directă a memoriei, fiind utilizat pentru aplicații de performanță înaltă.</p>
+            </section>
+
+            <section id="structure">
+                <h2>Elementele de bază ale limbajului C++</h2>
+                <p>C++ este un limbaj care include o varietate de elemente de bază care sunt esențiale pentru orice program. Acestea includ variabile, structuri de control, și bucle, printre altele. Iată câteva dintre elementele de bază în C++:</p>
+
+                <article class="element">
+                    <h3>Structuri liniare</h3>
+                    <p>În C++, variabilele pot fi declarate folosind tipuri de date fundamentale, precum <code>int</code>, <code>bool</code>, <code>char</code>, etc. Exemplu:</p>
+                    <pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;cmath&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main(){
+    int a, b, c; // [-2^31, 2^31-1] --> număr intreg
+    bool gasit = false; // true / false (1 / 0)
+    char ch; // stochează un caracter
+    float numar_rational;
+    double numar_rational2;
+    
+    a += c;
+    a--;
+    b -= a;
+    gasit != gasit;
+    a++;
+    a = a % b; // a primește restul împărțirii
+}
+                </code></pre>
+                </article>
+
+                <article class="element">
+                    <h3>Structuri alternative</h3>
+                    <p>C++ include instrucțiuni de control al fluxului, precum <code>if</code>, <code>else</code>, și <code>switch</code>, care permit programului să execute diferite blocuri de cod în funcție de condiții specifice.</p>
+                    <pre><code>if(a % 2 == 0)
+    cout << "a este par";
+else if(a % 10 == 3)
+    cout << "a are ultima cifra 3";
+else
+    cout << "a este impar si nu are ultima cifra 3";
+                </code></pre>
+                </article>
+
+                <article class="element">
+                    <h3>Structuri repetitive</h3>
+                    <p>Structurile repetitive, cum ar fi <code>for</code>, <code>while</code>, și <code>do-while</code>, sunt folosite pentru a repeta un bloc de cod de mai multe ori, în funcție de o condiție dată. Exemplu:</p>
+                    <pre><code>for(int i = 1; i <= a; i++){
+    if(i % 2 == 0)
+        continue;
+    cout << i << ' ';
+    if(i == 5)
+        break;
+}
+
+int j = 1;
+while(j <= a){
+    if(j % 2 == 0){
+        j++;
+        continue ;
+    }
+    cout << j << ' ';
+    if(j == 5)
+        break;
+    j++;
+}
+
+int k = 1;
+do{
+    if(k % 2 == 0){
+        k++;
+        continue;
+    }
+    cout << k << ' ';
+    if(k == 5)
+        break;
+}while(k <= a);
+                </code></pre>
+
+
+                    <section class="attention">
+                        <h4>!! ATENȚIE !!</h4>
+                        <p>La diferență de buclele <code>for</code> și <code>while</code>, bucla <code>do-while</code> se va executa cel puțin o dată, chiar dacă condiția de oprire este falsă la prima verificare. Acest comportament se datorează faptului că în cazul unui <code>do-while</code>, condiția este verificată abia după ce blocul de cod a fost executat cel puțin o dată.</p>
+                        <p>De exemplu, chiar dacă variabila <code>k</code> are valoarea 6 și condiția <code>k &lt;= a</code> este falsă, bucla se va executa o dată înainte de a verifica condiția. Acesta este un aspect important de reținut atunci când utilizăm <code>do-while</code> la subiectul II de la bac.</p>
+                    </section>
+                </article>
+            </section>
+        </main>
+
+
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

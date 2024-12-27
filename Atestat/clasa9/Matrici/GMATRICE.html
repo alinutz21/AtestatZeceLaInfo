@@ -1,0 +1,119 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Generarea Matricelor</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-th"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Generarea Matricelor</h1>
+                    <p>În această secțiune, explorăm algoritmi pentru generarea de matrici cu modele specifice, inclusiv distanțe față de diagonale și spirale.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Matrice cu distanțe față de diagonala secundară</h3>
+            <p>Fiecare element al matricei este egal cu distanța sa față de diagonala secundară.</p>
+            <p><strong>Exemplu:</strong> Pentru <code>n = 5</code>, matricea este:</p>
+            <pre><code>4 3 2 1 0
+3 2 1 0 1
+2 1 0 1 2
+1 0 1 2 3
+0 1 2 3 4</code></pre>
+            <h5>Cod:</h5>
+            <pre><code>void generare1(int a[][51], int n){
+    for(int i = 0; i < n; ++i)
+        for(int j = 0; j < n; ++j)
+            a[i][j] = abs(n - 1 - i - j);
+}</code></pre>
+
+            <h3>2. Matrice generată în spirală</h3>
+            <p>Elementele matricei sunt dispuse în spirală, în sensul acelor de ceasornic, de la <code>1</code> până la <code>n^2</code>.</p>
+            <p><strong>Exemplu:</strong> Pentru <code>n = 4</code>, matricea este:</p>
+            <pre><code>1  2  3  4
+12 13 14  5
+11 16 15  6
+10  9  8  7</code></pre>
+            <h5>Cod:</h5>
+            <pre><code>void generare2(int a[][51], int n){
+    int cnt = 1, i = 1, j = 1;
+    while(cnt <= n * n){
+        while(a[i][j] == 0 && j <= n && cnt <= n * n)
+            a[i][j] = cnt++, j++;
+        j--;
+        i++;
+        while(a[i][j] == 0 && i <= n && cnt <= n * n)
+            a[i][j] = cnt++, i++;
+        i--;
+        j--;
+        while(a[i][j] == 0 && j >= 1 && cnt <= n * n)
+            a[i][j] = cnt++, j--;
+        i--;
+        j++;
+        while(a[i][j] == 0 && i >= 1 && cnt <= n * n)
+            a[i][j] = cnt++, i--;
+        i++;
+        j++;
+    }
+}</code></pre>
+
+            <h4>Exemplu Practic</h4>
+            <p>Un exemplu de generare și afișare a unei matrice spiralate:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int a[51][51], n;
+    cin >> n;
+
+    generare2(a, n);
+
+    for(int i = 1; i <= n; ++i, cout << '\\n')
+        for(int j = 1; j <= n; ++j)
+            cout << a[i][j] << ' ';
+
+    return 0;
+}</code></pre>
+
+            <h4>Observații</h4>
+            <ul>
+                <li>Complexitatea algoritmului pentru ambele generări este <strong>O(n<sup>2</sup>)</strong>.</li>
+                <li>Funcțiile sunt adaptate pentru matrice de dimensiuni mici și medii, până la maxim 50x50 în acest exemplu.</li>
+                <li>Generarea în spirală necesită verificări suplimentare pentru evitarea suprascrierilor.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

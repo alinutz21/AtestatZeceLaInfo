@@ -1,0 +1,165 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Subprograme - Prelucrarea și Returnarea Tablourilor</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-table"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Subprograme - Prelucrarea și Returnarea Tablourilor</h1>
+                    <p>În această lecție, analizăm cum să citim, prelucrăm și returnăm tablouri unidimensionale și bidimensionale folosind funcții.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Subprograme pentru Tablouri Unidimensionale</h3>
+            <p>Funcții care efectuează operații de bază asupra vectorilor.</p>
+
+            <h4>a) Citirea unui Vector</h4>
+            <p><code>citireVector</code> citește dimensiunea și elementele unui vector.</p>
+            <h5>Cod:</h5>
+            <pre><code>void citireVector(int *a, int &n){
+    cin >> n;
+    for(int i = 1; i <= n; ++i)
+        cin >> a[i];
+}</code></pre>
+
+            <h4>b) Suma Elementelor unui Vector</h4>
+            <p><code>sumaElementeVector</code> calculează suma elementelor dintr-un vector.</p>
+            <h5>Cod:</h5>
+            <pre><code>int sumaElementeVector(int a[], int n){
+    int sum = 0;
+    for(int i = 1; i <= n; ++i)
+        sum += a[i];
+    return sum;
+}</code></pre>
+
+            <h4>c) Afișarea unui Vector</h4>
+            <p><code>afisareVector</code> afișează toate elementele unui vector.</p>
+            <h5>Cod:</h5>
+            <pre><code>void afisareVector(int a[], int n){
+    for(int i = 1; i <= n; ++i)
+        cout << a[i] << ' ';
+}</code></pre>
+
+            <h3>2. Subprograme pentru Tablouri Bidimensionale</h3>
+            <p>Funcții care prelucrează matrici.</p>
+
+            <h4>a) Citirea unei Matrice</h4>
+            <p><code>citireMatrice</code> citește dimensiunile și elementele unei matrice.</p>
+            <h5>Cod:</h5>
+            <pre><code>void citireMatrice(int a[][51], int &n, int &m){
+    cin >> n >> m;
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            cin >> a[i][j];
+}</code></pre>
+
+            <h4>b) Suma Elementelor unei Matrice</h4>
+            <p><code>sumaMatrice</code> calculează suma elementelor unei matrice folosind funcția <code>sumaElementeVector</code>.</p>
+            <h5>Cod:</h5>
+            <pre><code>int sumaMatrice(int a[][51], int n, int m){
+    int sum = 0;
+    for(int i = 1; i <= n; ++i)
+        sum += sumaElementeVector(a[i], m);
+    return sum;
+}</code></pre>
+
+            <h4>c) Afișarea unei Matrice</h4>
+            <p><code>afisareMatrice</code> afișează toate elementele unei matrici.</p>
+            <h5>Cod:</h5>
+            <pre><code>void afisareMatrice(int a[][51], int n, int m){
+    for(int i = 1; i <= n; ++i, cout << '\\n')
+        for(int j = 1; j <= m; ++j)
+            cout << a[i][j] << ' ';
+}</code></pre>
+
+            <h3>3. Funcții care Returnează Tablouri</h3>
+            <p>Subprogramele pot returna tablouri utilizând alocare dinamică.</p>
+
+            <h4>a) Returnarea unui Vector</h4>
+            <p><code>citireVector</code> returnează un vector alocat dinamic.</p>
+            <h5>Cod:</h5>
+            <pre><code>int* citireVector(int &n){
+    cin >> n;
+    int *a = new int[n + 1];
+    for(int i = 1; i <= n; ++i)
+        cin >> a[i];
+    return a;
+}</code></pre>
+
+            <h4>b) Returnarea unei Matrici</h4>
+            <p><code>citireMatrice</code> returnează o matrice alocată dinamic.</p>
+            <h5>Cod:</h5>
+            <pre><code>int** citireMatrice(int &n, int &m){
+    cin >> n >> m;
+    int **a = new int*[n+1];
+    for(int i = 0; i <= n; ++i)
+        a[i] = new int[m+1];
+
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            cin >> a[i][j];
+
+    return a;
+}</code></pre>
+
+            <h4>4. Exemplu Practic</h4>
+            <p>Citirea și afișarea unei matrici:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int n, m, **a;
+
+    a = citireMatrice(n, m);
+
+    for(int i = 1; i <= n; ++i, cout << '\\n')
+        for(int j = 1; j <= m; ++j)
+            cout << a[i][j] << ' ';
+
+    return 0;
+}</code></pre>
+
+            <h4>5. Observații</h4>
+            <ul>
+                <li>Funcțiile care returnează tablouri alocate dinamic necesită eliberarea memoriei cu <code>delete[]</code> sau <code>delete[][]</code>.</li>
+                <li>Tablourile bidimensionale pot fi utilizate ca pointeri dubli.</li>
+                <li>Reutilizarea funcțiilor crește modularitatea și claritatea codului.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

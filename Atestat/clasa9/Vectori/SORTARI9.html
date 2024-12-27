@@ -1,0 +1,134 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Sortarea Vectorilor - O(n*n)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-sort"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Sortarea Vectorilor - O(n<sup>2</sup>)</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Metode de sortare în C++</h3>
+            <p>Acest articol detaliază implementările pentru <strong>Selection Sort</strong>, <strong>Bubble Sort</strong> și <strong>Insertion Sort</strong>. Fiecare metodă este prezentată în variante iterative și recursive.</p>
+
+            <h4>Selection Sort</h4>
+            <p><em>Descriere:</em> Algoritmul caută minimul din partea nesortată a vectorului și îl plasează la început. Repetă procesul pentru fiecare poziție.</p>
+            <h5>Cod Iterativ Direct:</h5>
+            <pre><code>void selectionSortIterativDirect(int a[], int n){
+    for(int i = 1; i < n; ++i){
+        int imin = i;
+        for(int j = i + 1; j <= n; ++j)
+            if(a[imin] > a[j])
+                imin = j;
+        swap(a[i], a[imin]);
+    }
+}</code></pre>
+
+            <h5>Cod Recursiv:</h5>
+            <pre><code>void selectionSortRecursiv1(int a[], int n){
+    if(n <= 1)
+        return ;
+    for(int i = 1; i < n; ++i)
+        if(a[i] > a[n])
+            swap(a[i], a[n]);
+    selectionSortRecursiv1(a, n-1);
+}</code></pre>
+
+            <h4>Bubble Sort</h4>
+            <p><em>Descriere:</em> Algoritmul compară fiecare pereche de elemente adiacente și le interschimbă dacă sunt în ordine greșită. Procesul continuă până când vectorul devine sortat.</p>
+            <h5>Cod Iterativ Clasic:</h5>
+            <pre><code>void bubbleSortClasicIterativ(int a[], int n){
+    bool este_sortat = false;
+    while(!este_sortat){
+        este_sortat = true;
+        for(int i = 1; i < n; ++i)
+            if(a[i] > a[i+1]){
+                swap(a[i], a[i+1]);
+                este_sortat = false;
+            }
+    }
+}</code></pre>
+
+            <h5>Cod Recursiv:</h5>
+            <pre><code>void bubbleSortClasicRecursiv(int a[], int n){
+    bool este_sortat = true;
+    for(int j = 1; j < n; ++j)
+        if(a[j] > a[j+1]){
+            swap(a[j], a[j+1]);
+            este_sortat = false;
+        }
+    if(!este_sortat)
+        bubbleSortClasicRecursiv(a, n);
+}</code></pre>
+
+            <h4>Insertion Sort</h4>
+            <p><em>Descriere:</em> Algoritmul inserează fiecare element în poziția corectă în porțiunea deja sortată a vectorului.</p>
+            <h5>Cod Iterativ:</h5>
+            <pre><code>void insertionSortIterativ(int a[], int n){
+    for(int i = 2; i <= n; ++i){
+        int poz = i;
+        for(int j = i - 1; j >= 1; --j)
+            if(a[j] > a[i])
+                poz = j;
+        int aux = a[i];
+        for(int j = i - 1; j >= poz; --j)
+            a[j+1] = a[j];
+        a[poz] = aux;
+    }
+}</code></pre>
+
+            <h5>Cod Recursiv:</h5>
+            <pre><code>void insertionSortRecursiv(int a[], int n, int i = 2){
+    if(i > n)
+        return ;
+    for(int j = i; j > 1; --j)
+        if(a[j] < a[j-1])
+            swap(a[j], a[j-1]);
+    insertionSortRecursiv(a, n, i+1);
+}</code></pre>
+
+            <h4>Observații Generale</h4>
+            <ul>
+                <li>Complexitatea algoritmilor este <strong>O(n<sup>2</sup>)</strong>, ceea ce îi face potriviți doar pentru vectori mici.</li>
+                <li>Implementările recursive sunt mai elegante, dar pot consuma mai multă memorie datorită stivei de apeluri.</li>
+                <li>Fiecare algoritm prezintă avantaje și dezavantaje, iar alegerea depinde de situația specifică.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

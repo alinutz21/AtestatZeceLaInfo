@@ -1,0 +1,115 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Ștergeri și Inserări în Vectori</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-edit"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Ștergeri și Inserări în Vectori</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Operații pe Vectori</h3>
+            <p>În această secțiune, vom explora funcții pentru ștergerea și inserarea elementelor într-un vector, incluzând operații pe elemente pare.</p>
+
+            <h4>Codul complet:</h4>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void stergere_element(int a[], int &amp;n, int poz){
+    for(int i = poz + 1; i &lt;= n; ++i)
+        a[i - 1] = a[i];
+    n--;
+}
+
+void stergere_elemente_pare(int a[], int &amp;n){
+    for(int i = 1; i &lt;= n; ++i)
+        if(a[i] % 2 == 0){
+            for(int j = i + 1; j &lt;= n; ++j)
+                a[j-1] = a[j];
+            n--;
+            i--;
+        }
+}
+
+void inserare_element(int a[], int &amp;n, int poz, int val){
+    for(int i = n; i &gt;= poz; --i)
+        a[i+1] = a[i];
+    a[poz] = val;
+    n++;
+}
+
+void dublare_elemente_pare(int a[], int &amp;n){
+    for(int i = 1; i &lt;= n; ++i)
+        if(a[i] % 2 == 0){
+            for(int j = n; j &gt;= i + 1; --j)
+                a[j+1] = a[j];
+            a[i+1] = a[i];
+            n++;
+            i++;
+        }
+}
+
+int main() {
+    int a[1001], n;
+    cin &gt;&gt; n;
+    for(int i = 1; i &lt;= n; ++i)
+        cin &gt;&gt; a[i];
+
+    dublare_elemente_pare(a, n);
+
+    for(int i = 1; i &lt;= n; ++i)
+        cout &lt;&lt; a[i] &lt;&lt; ' ';
+
+    return 0;
+}
+</code></pre>
+
+            <h4>Explicații:</h4>
+            <ul>
+                <li><code>stergere_element</code>: Elimină un element dintr-o poziție specificată a vectorului.</li>
+                <li><code>stergere_elemente_pare</code>: Elimină toate elementele pare din vector.</li>
+                <li><code>inserare_element</code>: Inserează un element la o poziție specificată.</li>
+                <li><code>dublare_elemente_pare</code>: Dublează toate elementele pare prin inserarea unei copii adiționale imediat după ele.</li>
+            </ul>
+
+            <h4>Observații:</h4>
+            <p>Operațiile implică modificări directe ale dimensiunii vectorului (<code>n</code>), iar acestea trebuie gestionate cu atenție pentru a evita accesarea elementelor invalide.</p>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Generarea de Șiruri și Matrici Recurente</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-sitemap"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Generarea de Șiruri și Matrici Recurente</h1>
+                    <p>Descoperă cum să generezi modele recurente folosind recursivitate, inclusiv șiruri "fierăstrău" și matrici cu modele definite.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Generarea unui Model în Matrice</h3>
+            <p><code>generare_pattern</code> umple o matrice cu un model pe baza recursivității. Matricea este împărțită în patru sub-matrici, iar doar prima sub-matrice este umplută cu valoarea <code>1</code>.</p>
+            <h5>Cod:</h5>
+            <pre><code>void generare_pattern(int i1, int j1, int i2, int j2){
+    if(i1 == i2)
+        return;
+    int miji = (i1 + i2) / 2;
+    int mijj = (j1 + j2) / 2;
+    for(int i = i1; i <= miji; ++i)
+        for(int j = j1; j <= mijj; ++j)
+            a[i][j] = 1;
+    generare_pattern(i1, mijj+1, miji, j2);
+    generare_pattern(miji+1, j1, i2, mijj);
+    generare_pattern(miji+1, mijj+1, i2, j2);
+}</code></pre>
+
+            <h3>2. Generarea unui Model cu Valori Descrescătoare</h3>
+            <p><code>generare_pattern1</code> umple o matrice cu valori descrescătoare, pornind din centru spre margini, folosind recursivitate.</p>
+            <h5>Cod:</h5>
+            <pre><code>void generare_pattern1(int i1, int j1, int i2, int j2, int val){
+    if(val == 0)
+        return;
+    int miji = (i1 + i2) / 2;
+    int mijj = (j1 + j2) / 2;
+    a[miji][mijj] = val;
+    generare_pattern1(i1, j1, miji-1, mijj-1, val-1);
+    generare_pattern1(i1, mijj+1, miji-1, j2, val-1);
+    generare_pattern1(miji+1, j1, i2, mijj-1, val-1);
+    generare_pattern1(miji+1, mijj+1, i2, j2, val-1);
+}</code></pre>
+
+            <h3>3. Generarea unui Șir de Tip "Fierăstrău"</h3>
+            <p><code>afisare_fierastrau</code> generează și afișează un șir recursiv de tip "fierăstrău".</p>
+            <h5>Cod:</h5>
+            <pre><code>void afisare_fierastrau(int n){
+    if(n == 0)
+        return;
+    afisare_fierastrau(n - 1);
+    cout << n << ' ';
+    afisare_fierastrau(n - 1);
+}</code></pre>
+            <p><strong>Exemplu:</strong> Pentru <code>n = 3</code>, ieșirea este: <code>1 2 1 3 1 2 1</code>.</p>
+
+            <h4>4. Exemplu Practic</h4>
+            <p>Generarea unui model cu valori descrescătoare în matrice:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int a[1025][1025], n;
+
+void generare_pattern1(int i1, int j1, int i2, int j2, int val){
+    if(val == 0)
+        return;
+    int miji = (i1 + i2) / 2;
+    int mijj = (j1 + j2) / 2;
+    a[miji][mijj] = val;
+    generare_pattern1(i1, j1, miji-1, mijj-1, val-1);
+    generare_pattern1(i1, mijj+1, miji-1, j2, val-1);
+    generare_pattern1(miji+1, j1, i2, mijj-1, val-1);
+    generare_pattern1(miji+1, mijj+1, i2, j2, val-1);
+}
+
+int main(){
+    cin >> n;
+    int m = (1 << n) - 1; // Calculăm dimensiunea matricei
+
+    generare_pattern1(1, 1, m, m, n);
+
+    for(int i = 1; i <= m; ++i, cout << '\\n')
+        for(int j = 1; j <= m; ++j)
+            cout << a[i][j] << ' ';
+    return 0;
+}</code></pre>
+
+            <h4>5. Observații</h4>
+            <ul>
+                <li>Matricea generată are dimensiunea <code>(2^n - 1) x (2^n - 1)</code>.</li>
+                <li>Recursivitatea permite generarea de modele complexe într-un mod elegant și intuitiv.</li>
+                <li>Complexitatea depinde de nivelul de împărțire a matricei și poate fi exprimată în funcție de <code>O(n)</code>.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

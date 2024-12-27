@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Elemente introductive - Vectori</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Elemente introductive - Vectori</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Vectori în C++</h3>
+            <p>În această secțiune, vom explora utilizarea vectorilor în C++, incluzând operațiile de referențiere, dereferențiere și manipulare a elementelor.</p>
+
+            <h4>Explicații teoretice</h4>
+            <p>
+                <strong>Operatori:</strong><br>
+                <code>&</code> - operator de referențiere: returnează adresa de memorie unde este stocat un element.<br>
+                <code>*</code> - operator de dereferențiere: returnează valoarea stocată la o anumită adresă de memorie.<br><br>
+                Relații importante:<br>
+                <code>a[i] &lt;=&gt; *(a + i)</code> - valoarea din memorie a lui <code>a[i]</code>.<br>
+                <code>&a[i] &lt;=&gt; a + i</code> - adresa de memorie unde este stocat <code>a[i]</code>.
+            </p>
+
+            <h4>Codul complet:</h4>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int a[101]; // are 101 elemente declarate de la pozitia 0...100
+int n; // dimensiunea sirului
+
+int main(){
+
+    a[0] = 7;
+    a[1] = 5;
+    a[2] = 12;
+
+    cout &lt;&lt; &amp;a[0] &lt;&lt; ' ' &lt;&lt; &amp;a[1] &lt;&lt; ' ' &lt;&lt; &amp;a[2] &lt;&lt; '\n';
+
+    cout &lt;&lt; *a &lt;&lt; ' ' &lt;&lt; *(a + 1) &lt;&lt; ' ' &lt;&lt; *(a + 2);
+
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; ++i)
+        cin &gt;&gt; a[i];
+
+    for(int i = 0; i &lt; n; ++i)
+        cout &lt;&lt; i[a] &lt;&lt; ' '; 
+
+    int *v = a;
+
+    cout &lt;&lt; v[0] &lt;&lt; ' ' &lt;&lt; v[1] &lt;&lt; v[2];
+
+    return 0;
+}
+</code></pre>
+
+            <h4>Rezumat</h4>
+            <ul>
+                <li><code>a[0]</code>, <code>a[1]</code> și <code>a[2]</code> sunt primele 3 elemente ale vectorului.</li>
+                <li>Adresele de memorie ale elementelor vectorului pot fi obținute cu <code>&a[i]</code>.</li>
+                <li>Valorile elementelor vectorului pot fi accesate cu <code>*a</code> sau <code>*(a + i)</code>.</li>
+                <li>Perechea <code>i[a]</code> este echivalentă cu <code>a[i]</code>, datorită simetriei în aritmetica pointerilor.</li>
+            </ul>
+
+            <h4>Notă:</h4>
+            <p>Codul demonstrează cum pointerii pot fi utilizați pentru a lucra cu vectori, iar conceptul poate fi extins pentru alte structuri de date.</p>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

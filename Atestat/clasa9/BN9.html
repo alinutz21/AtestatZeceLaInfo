@@ -1,0 +1,162 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Dimension by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Zece La BAC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-brands fa-amazon"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Baze de numerație</h1>
+                </div>
+            </div>
+        </header>
+
+        <article class="element">
+            <h3>Baze de Numeratie</h3>
+            <p>În această secțiune, vom explora conversiile între baze de numeratie, precum Baza 2, Baza 10 și Baza 16. Vom discuta despre tehnici de conversie, atât iterative cât și recursive, și despre proprietățile numerelor în aceste baze.</p>
+
+            <h4>1. Conversia unui număr din baza 10 în baza 2</h4>
+            <p>Conversia unui număr din baza 10 în baza 2 se face prin împărțirea succesivă a numărului la 2 și colectarea resturilor. Resturile obținute sunt citite în ordine inversă pentru a obține cifra binară:</p>
+
+            <h5>Funcție Recursivă:</h5>
+            <pre><code>void baza2_rec(int n){
+    if(n == 0)
+        return ;
+    baza2_rec(n / 2);
+    cout << n % 2;
+}</code></pre>
+
+            <h5>Funcție Iterativă:</h5>
+            <pre><code>void baza2(int n){
+    int cif[20], nr_cif = 0;
+    while(n){
+        cif[++nr_cif] = n % 2;
+        n /= 2;
+    }
+    for(int i = nr_cif; i >= 1; --i)
+        cout << cif[i];
+}</code></pre>
+
+            <p>!! ATENȚIE !! Când folosim funcția recursivă, trebuie să fim conștienți că <code>baza2_rec(0)</code> nu va afișa nimic, așa că trebuie să gestionăm cazul în care numărul introdus este 0, pentru a nu produce o ieșire incompletă.</p>
+
+            <h4>2. Conversia unui număr din baza 10 în baza 16</h4>
+            <p>Conversia unui număr din baza 10 în baza 16 se face prin împărțirea succesivă la 16 și colectarea resturilor, la fel ca în cazul conversiei în baza 2, însă cu simboluri de la 0 la F:</p>
+
+            <h5>Funcție Iterativă:</h5>
+            <pre><code>void baza16(int n){
+    int cif[20], nr_cif = 0;
+    char tablou_conversie[] = "0123456789ABCDEF";
+    while(n){
+        cif[++nr_cif] = n % 16;
+        n /= 16;
+    }
+    for(int i = nr_cif; i >= 1; --i)
+        cout << tablou_conversie[cif[i]];
+}</code></pre>
+
+            <h5>Funcție Recursivă:</h5>
+            <pre><code>void baza16_rec(int n){
+    if(n == 0)
+        return ;
+    baza16_rec(n / 16);
+    cout << tablou_conversie[n % 16];
+}</code></pre>
+
+            <p>Atunci când conversia se face recursiv, este important să ținem minte că și resturile trebuie citite în ordine inversă, iar funcția nu va printa nimic pentru 0. Este recomandat să tratăm explicit cazul în care numărul este 0.</p>
+
+            <h4>3. Conversia unui număr din baza 2 sau baza 16 în baza 10</h4>
+            <p>Conversia inversă se face prin evaluarea fiecărei poziții a cifrei în baza respectivă, utilizând puterile bazei. Funcțiile de conversie pentru baza 2 și baza 16 sunt:</p>
+
+            <h5>Conversia din baza 2 în baza 10:</h5>
+            <pre><code>int conversie_B2_B10(char numar[]){
+    int n = 0, p = 1;
+    for(int i = strlen(numar) - 1; i >= 0; --i){
+        n += p * (numar[i] - '0');
+        p *= 2;
+    }
+    return n;
+}</code></pre>
+
+            <h5>Conversia din baza 16 în baza 10:</h5>
+            <pre><code>int conversie_B16_B10(char numar[]){
+    int n = 0, p = 1;
+    for(int i = strlen(numar) - 1; i >= 0; --i){
+        int cif = numar[i];
+        if(isdigit(numar[i]))
+            cif -= '0';
+        else cif -= 'A' + 10;
+        n += cif * p;
+        p *= 16;
+    }
+    return n;
+}</code></pre>
+
+            <p>Aceste funcții de conversie analizează fiecare caracter al șirului de caractere, îl convertește în valoarea corespunzătoare și calculează valoarea totală în baza 10.</p>
+
+            <h4>4. Verificarea dacă un număr poate fi scris ca o sumă de puteri distincte ale bazei</h4>
+            <p>Aceste funcții verifică dacă un număr, atunci când este scris într-o anumită bază, conține doar cifrele 0 și 1. Dacă numărul respectă această condiție, atunci poate fi scris ca suma unor puteri distincte ale bazei respective.</p>
+            <pre><code>bool suma_puteri_distincte(int n, int b){
+    while(n){
+        if(n % b > 1)
+            return false;
+        n /= b;
+    }
+    return true;
+}</code></pre>
+
+            <p>Funcția <code>suma_puteri_distincte</code> verifică dacă un număr scris în baza <code>b</code> conține doar cifre 0 sau 1. Este o proprietate importantă pentru reprezentarea numerelor în diverse baze.</p>
+
+            <h4>5. Exemple de conversie rapidă</h4>
+            <p>Conversiile rapide sunt utile pentru a trece de la baza 2 la baza 16 sau invers:</p>
+
+            <p><strong>Exemplu:</strong></p>
+            <pre><code>10111010101110101010101111(2) = 2EAEAAF(16)</code></pre>
+
+            <pre><code>101101011111001000101001(2) = B5F229(16)</code></pre>
+
+            <pre><code>2FA31B(16) = 1011111010001100011011(2)</code></pre>
+
+        </article>
+
+
+
+
+
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Interclasare și Operații pe Mulțimi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-layer-group"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Interclasare și Operații pe Mulțimi</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Introducere</h3>
+            <p>Algoritmii descriși aici tratează interclasarea a două șiruri ordonate și implementarea unor operații pe mulțimi matematice, cum ar fi reuniunea, intersecția, diferența și diferența simetrică.</p>
+
+            <h4>1. Interclasare</h4>
+            <p><em>Descriere:</em> Combinația a două șiruri ordonate într-unul singur, păstrând ordinea elementelor.</p>
+            <h5>Cod:</h5>
+            <pre><code>void interclasare(int a[], int n, int b[], int m, int c[], int &indc){
+    indc = 0;
+    int inda = 1, indb = 1;
+    while(inda <= n && indb <= m){
+        if(a[inda] <= b[indb])
+            c[++indc] = a[inda++];
+        else c[++indc] = b[indb++];
+    }
+    while(inda <= n)
+        c[++indc] = a[inda++];
+    while(indb <= m)
+        c[++indc] = b[indb++];
+}</code></pre>
+
+            <h4>2. Reuniunea</h4>
+            <p><em>Descriere:</em> Unirea a două mulțimi pentru a obține toate elementele distincte din ambele mulțimi.</p>
+            <h5>Cod:</h5>
+            <pre><code>void reuniune(int a[], int n, int b[], int m, int c[], int &indc){
+    indc = 0;
+    int inda = 1, indb = 1;
+    while(inda <= n && indb <= m){
+        if(a[inda] < b[indb])
+            c[++indc] = a[inda++];
+        else if(a[inda] > b[indb])
+            c[++indc] = b[indb++];
+        else
+            c[++indc] = a[inda++], indb++;
+    }
+    while(inda <= n)
+        c[++indc] = a[inda++];
+    while(indb <= m)
+        c[++indc] = b[indb++];
+}</code></pre>
+
+            <h4>3. Intersecția</h4>
+            <p><em>Descriere:</em> Determină elementele comune din două mulțimi.</p>
+            <h5>Cod:</h5>
+            <pre><code>void intersectie(int a[], int n, int b[], int m, int c[], int &indc){
+    indc = 0;
+    int inda = 1, indb = 1;
+    while(inda <= n && indb <= m){
+        if(a[inda] < b[indb])
+            inda++;
+        else if(a[inda] > b[indb])
+            indb++;
+        else c[++indc] = a[inda++], indb++;
+    }
+}</code></pre>
+
+            <h4>4. Diferența</h4>
+            <p><em>Descriere:</em> Obține elementele care apar într-o mulțime, dar nu și în cealaltă.</p>
+            <h5>Cod:</h5>
+            <pre><code>void diferenta(int a[], int n, int b[], int m, int c[], int &indc){
+    indc = 0;
+    int inda = 1, indb = 1;
+    while(inda <= n && indb <= m){
+        if(a[inda] < b[indb])
+            c[++indc] = a[inda++];
+        else if(a[inda] > b[indb])
+            indb++;
+        else inda++, indb++;
+    }
+    while(inda <= n)
+        c[++indc] = a[inda++];
+}</code></pre>
+
+            <h4>5. Diferența Simetrică</h4>
+            <p><em>Descriere:</em> Reunește elementele care apar în exact una dintre cele două mulțimi.</p>
+            <h5>Cod:</h5>
+            <pre><code>void diferenta_simetrica(int a[], int n, int b[], int m, int c[], int &indc){
+    indc = 0;
+    int inda = 1, indb = 1;
+    while(inda <= n && indb <= m){
+        if(a[inda] < b[indb])
+            c[++indc] = a[inda++];
+        else if(a[inda] > b[indb])
+            c[++indc] = b[indb++];
+        else inda++, indb++;
+    }
+    while(inda <= n)
+        c[++indc] = a[inda++];
+    while(indb <= m)
+        c[++indc] = b[indb++];
+}</code></pre>
+
+            <h4>6. Observații</h4>
+            <ul>
+                <li>Aceste algoritmi presupun că mulțimile sunt reprezentate sub formă de șiruri ordonate.</li>
+                <li>Complexitatea tuturor operațiilor este <strong>O(n + m)</strong>, unde <code>n</code> și <code>m</code> sunt dimensiunile celor două mulțimi.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

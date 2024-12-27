@@ -1,0 +1,126 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Structuri și Algoritmul lui Lee</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Structuri și Algoritmul lui Lee</h1>
+                    <p>Explorăm definiția structurilor, funcțiile asociate și aplicarea algoritmului lui Lee pentru probleme clasice de grafuri și matrice.</p>
+                    <p>⚠️ Atenție: Materia din acestă parte este avansată!</p>
+                </div>
+            </div>
+        </header>
+     
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Structuri în C++</h3>
+            <p>Structurile sunt tipuri de date personalizate care grupează variabile sub același tip logic.</p>
+
+            <h4>a) Definirea Structurilor</h4>
+            <pre><code>struct data_calendaristica {
+    int zi, luna, an;
+
+    void citire_data(){
+        cin >> zi >> luna >> an;
+    }
+
+    void afisare_data(){
+        cout << zi << "/" << luna << "/" << an << endl;
+    }
+};</code></pre>
+
+            <h4>b) Funcții în Structuri</h4>
+            <p>Exemplu: Calculul diferenței în zile între două date:</p>
+            <pre><code>int diferenta_in_zile(data_calendaristica d1, data_calendaristica d2){
+    int zile1 = d1.an * 365 + d1.luna * 30 + d1.zi;
+    int zile2 = d2.an * 365 + d2.luna * 30 + d2.zi;
+    return abs(zile1 - zile2);
+}</code></pre>
+
+            <h3>2. Algoritmul lui Lee</h3>
+            <p>Algoritmul lui Lee este utilizat pentru a calcula distanțe minime pe o matrice (graf neponderat).</p>
+
+            <h4>a) Implementarea Algoritmului</h4>
+            <pre><code>void lee(int x, int y){
+    Q.push({x, y});
+    dist[x][y] = 0;
+    while(!Q.empty()){
+        pair<int, int> poz = Q.front();
+        Q.pop();
+        for(int d = 0; d < 4; ++d){
+            int nx = poz.first + dx[d];
+            int ny = poz.second + dy[d];
+            if(inmat(nx, ny) && a[nx][ny] == 0 && dist[nx][ny] == -1){
+                dist[nx][ny] = dist[poz.first][poz.second] + 1;
+                Q.push({nx, ny});
+            }
+        }
+    }
+}</code></pre>
+
+            <h4>b) Aplicație: Determinarea Numărului de Insule</h4>
+            <pre><code>void lee_insule(int i, int j, int id){
+    Q.push({i, j});
+    b[i][j] = id;
+    while(!Q.empty()){
+        pair<int, int> poz = Q.front();
+        Q.pop();
+        for(int d = 0; d < 4; ++d){
+            int nx = poz.first + dx[d];
+            int ny = poz.second + dy[d];
+            if(inmat(nx, ny) && a[nx][ny] == 1 && b[nx][ny] == 0){
+                b[nx][ny] = id;
+                Q.push({nx, ny});
+            }
+        }
+    }
+}</code></pre>
+
+            <h4>c) Exerciții Practice</h4>
+            <ul>
+                <li>Implementați algoritmul pentru a găsi cea mai mare insulă.</li>
+                <li>Extindeți algoritmul pentru matrice tridimensionale.</li>
+            </ul>
+
+            <h3>3. Observații</h3>
+            <ul>
+                <li><strong>Structurile:</strong> Simplifică gestionarea datelor complexe.</li>
+                <li><strong>Lee:</strong> Asigură găsirea celei mai scurte distanțe într-un graf neponderat.</li>
+                <li><strong>Complexitate:</strong> <code>O(n * m)</code> pentru o matrice de dimensiuni <code>n x m</code>.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

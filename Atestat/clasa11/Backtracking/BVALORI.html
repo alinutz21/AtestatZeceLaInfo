@@ -1,0 +1,111 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Algoritmi de Backtracking - Clasa a 11-a</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code-branch"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Algoritmi de Backtracking</h1>
+                    <p>Explorăm algoritmi avansați de backtracking pentru probleme clasice: partiții, suma maximă pe poziții neconsecutive și problema rucsacului.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Problema Partițiilor</h3>
+            <p>Se cere să determinăm în câte moduri poate fi scris un număr <code>n</code> ca sumă de numere impare distincte.</p>
+            <p><strong>Formula Recursivă:</strong></p>
+            <pre><code>nr_mod(n, prev) = Σ nr_mod(n - i, i), unde i = prev + 2 ... n</code></pre>
+            <p><strong>Implementare C++:</strong></p>
+            <pre><code>int nr_mod(int n, int prev = -1){
+    if(n == 0)
+        return 1;
+    int cnt = 0;
+    for(int i = prev + 2; i <= n; i += 2)
+        cnt += nr_mod(n - i, i);
+    return cnt;
+}</code></pre>
+
+            <h3>2. Suma Maximă a unui Subșir</h3>
+            <p>Determinarea sumei maxime a unui subșir format din elemente aflate pe poziții neconsecutive.</p>
+            <p><strong>Formula Recursivă:</strong></p>
+            <pre><code>s_max(poz, n) = max(s_max(poz+1, n), s_max(poz+2, n) + a[poz])</code></pre>
+            <p><strong>Implementare C++:</strong></p>
+            <pre><code>int s_max(int poz, int n, int a[]){
+    if(poz > n)
+        return 0;
+    return max(s_max(poz + 1, n, a), s_max(poz + 2, n, a) + a[poz]);
+}</code></pre>
+
+            <h3>3. Problema Rucsacului</h3>
+            <p>Determinarea valorii maxime care poate fi obținută dintr-un set de obiecte cu greutate și valoare, astfel încât să nu depășim greutatea maximă permisă a rucsacului.</p>
+            <p><strong>Formula Recursivă:</strong></p>
+            <pre><code>v_max(poz, n, GMAX) = max(v_max(poz+1, n, GMAX), v_max(poz+1, n, GMAX-G[poz]) + V[poz])</code></pre>
+            <p><strong>Structură C++:</strong></p>
+            <pre><code>struct obiect{
+    int G, V;
+};
+
+int v_max(int poz, int n, obiect a[], int GrDisponibila){
+    if(poz > n)
+        return 0;
+    if(a[poz].G > GrDisponibila)
+        return v_max(poz + 1, n, a, GrDisponibila);
+    return max(v_max(poz + 1, n, a, GrDisponibila),
+               v_max(poz + 1, n, a, GrDisponibila - a[poz].G) + a[poz].V);
+}</code></pre>
+
+            <h4>Exemplu Practic:</h4>
+            <pre><code>int main(){
+    int n, GMAX;
+    cin >> n >> GMAX;
+    obiect a[1001];
+    for(int i = 1; i <= n; ++i)
+        cin >> a[i].G >> a[i].V;
+
+    cout << v_max(1, n, a, GMAX);
+    return 0;
+}</code></pre>
+
+            <h3>4. Observații</h3>
+            <ul>
+                <li>Toți algoritmii folosesc recursivitatea pentru a explora toate posibilitățile, dar pot fi optimizați folosind programarea dinamică.</li>
+                <li>Problema rucsacului este baza multor probleme de optimizare.</li>
+                <li>Pentru problemele complexe, memorarea intermediară poate îmbunătăți performanța algoritmului.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

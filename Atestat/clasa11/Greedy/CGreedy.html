@@ -1,0 +1,135 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Metoda Greedy</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-hand-holding-usd"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Metoda Greedy</h1>
+                    <p>Selecția soluțiilor locale optime pentru rezolvarea problemelor complexe.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Introducere în metoda Greedy</h3>
+            <p>Metoda Greedy (sau lacomă) presupune alegerea soluției optime la nivel local, în fiecare etapă a algoritmului, cu speranța că această strategie va conduce la o soluție globală optimă.</p>
+
+            <h3>2. Exemplu: Problema Proiectelor</h3>
+            <p>Avem o serie de proiecte reprezentate prin timpii de execuție: <code>a, b, c, d, e</code>. Metoda greedy sortează proiectele crescător și calculează timpul mediu alocat fiecărui proiect pentru a minimiza timpul total de așteptare:</p>
+            <p><strong>Formula timpului mediu:</strong></p>
+            <p><em>T<sub>mediu</sub> = (5·a + 4·b + 3·c + 2·d + e) / 5</em></p>
+            <p>Codul corespunzător în C++ este:</p>
+            <pre><code>#include <bits /stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> proiecte = {5, 3, 8, 6, 2};
+    sort(proiecte.begin(), proiecte.end());
+    
+    int timp_total = 0, suma = 0;
+    for (int timp : proiecte) {
+        suma += timp;
+        timp_total += suma;
+    }
+
+    cout << "Timpul mediu: " << timp_total / proiecte.size() << endl;
+    return 0;
+}</code></pre>
+
+            <h3>3. Problema Intervalelor</h3>
+            <p>Se cere determinarea numărului maxim de intervale care nu se intersectează. Metoda greedy sortează intervalele după capătul din dreapta:</p>
+            <p><strong>Codul pentru rezolvarea acestei probleme:</strong></p>
+            <pre><code>#include <bits /stdc++.h>
+using namespace std;
+
+struct Interval {
+    int start, end;
+};
+
+bool cmp(Interval a, Interval b) {
+    return a.end < b.end;
+}
+
+int main() {
+    vector<Interval> intervale = {{1, 2}, {2, 4}, {3, 5}, {6, 8}, {5, 9}};
+    sort(intervale.begin(), intervale.end(), cmp);
+
+    int count = 0, last_end = -1;
+    for (auto &interval : intervale) {
+        if (interval.start >= last_end) {
+            count++;
+            last_end = interval.end;
+        }
+    }
+
+    cout << "Numărul maxim de intervale: " << count << endl;
+    return 0;
+}</code></pre>
+
+            <h3>4. Problema Sumei Minime</h3>
+            <p>Avem un șir de numere și dorim să calculăm suma totală minimă combinând mereu cele mai mici două elemente. Costul fiecărei operații este suma elementelor combinate:</p>
+            <p><strong>Codul pentru rezolvarea problemei:</strong></p>
+            <pre><code>#include <bits /stdc++.h>
+using namespace std;
+
+int main() {
+    priority_queue<int, vector<int>, greater<int>> pq;
+    vector<int> valori = {1, 2, 3, 4, 5};
+    for (int val : valori) pq.push(val);
+
+    int cost_total = 0;
+    while (pq.size() > 1) {
+        int a = pq.top(); pq.pop();
+        int b = pq.top(); pq.pop();
+        int cost = a + b;
+        cost_total += cost;
+        pq.push(cost);
+    }
+
+    cout << "Costul minim total: " << cost_total << endl;
+    return 0;
+}</code></pre>
+
+            <h3>5. Observații</h3>
+            <ul>
+                <li>Metoda Greedy funcționează optim atunci când problema satisface proprietatea de substructură optimă.</li>
+                <li>Sortarea este un pas crucial pentru multe probleme rezolvate cu această metodă.</li>
+                <li>Deși metoda poate da soluții suboptimale pentru unele probleme, este extrem de eficientă în practică.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

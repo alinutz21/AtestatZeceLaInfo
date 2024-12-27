@@ -1,0 +1,133 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Programare Dinamică</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-cubes"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Programare Dinamică</h1>
+                    <p>Abordarea optimizării problemelor prin rezolvarea subproblemelor și reutilizarea soluțiilor deja calculate.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Introducere în Programarea Dinamică</h3>
+            <p>Programarea Dinamică (PD) este o tehnică de rezolvare a problemelor care implică împărțirea unei probleme complexe în subprobleme mai mici și rezolvarea lor într-o manieră organizată. Rezultatele intermediare sunt stocate pentru a evita recalculările.</p>
+
+            <h3>2. Exemplu: Șirul Fibonacci</h3>
+            <p>Formula recursivă pentru calcularea elementelor șirului Fibonacci este:</p>
+            <p><strong>f(n) = f(n-1) + f(n-2)</strong></p>
+            <p>Codul pentru calcularea eficientă folosind PD este:</p>
+            <pre><code>#include <bits /stdc++.h>
+using namespace std;
+
+int fibonacci(int n) {
+    vector<int> dp(n + 1, 0);
+    dp[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+}
+
+int main() {
+    cout << "Fibonacci(10): " << fibonacci(10) << endl;
+    return 0;
+}</code></pre>
+
+            <h3>3. Exemplu: Număr de șiruri binare valide</h3>
+            <p>Problema cere să calculăm câte șiruri binare de lungime \( n \) pot fi formate fără ca două valori de 1 să fie consecutive.</p>
+            <p>Formula recursivă este:</p>
+            <ul>
+                <li><strong>f(n, 0)</strong> = numărul de șiruri care se termină cu 0</li>
+                <li><strong>f(n, 1)</strong> = numărul de șiruri care se termină cu 1</li>
+                <li><strong>f(n, 0)</strong> = f(n-1, 0) + f(n-1, 1)</li>
+                <li><strong>f(n, 1)</strong> = f(n-1, 0)</li>
+            </ul>
+            <p>Codul corespunzător este:</p>
+            <pre><code>#include <bits /stdc++.h>
+using namespace std;
+
+int numarSiruri(int n) {
+    vector<int> dp0(n + 1, 0), dp1(n + 1, 0);
+    dp0[1] = dp1[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        dp0[i] = dp0[i - 1] + dp1[i - 1];
+        dp1[i] = dp0[i - 1];
+    }
+    return dp0[n] + dp1[n];
+}
+
+int main() {
+    cout << "Număr de șiruri valide pentru n=10: " << numarSiruri(10) << endl;
+    return 0;
+}</code></pre>
+
+            <h3>4. Exemplu: Harta 4x4</h3>
+            <p>Avem o hartă de dimensiune 4x4, iar fiecare celulă poate fi accesată doar prin salturi bazate pe numere mai mari. Se cere numărul de moduri distincte în care se poate ajunge din celula (1,1) în celula (4,4).</p>
+            <p>Formula generală:</p>
+            <p><strong>D[i][j] = 2 * D[i-1][j] + 2 * D[i][j-1] - 2 * D[i-1][j-1]</strong></p>
+            <p>Codul corespunzător:</p>
+            <pre><code>#include <bits /stdc++.h>
+using namespace std;
+
+int harta4x4() {
+    vector<vector<int>> dp(5, vector<int>(5, 0));
+    dp[1][1] = 1;
+    for (int i = 1; i <= 4; i++) {
+        for (int j = 1; j <= 4; j++) {
+            if (i == 1 && j == 1) continue;
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+        }
+    }
+    return dp[4][4];
+}
+
+int main() {
+    cout << "Număr moduri distincte pe harta 4x4: " << harta4x4() << endl;
+    return 0;
+}</code></pre>
+
+            <h3>5. Observații</h3>
+            <ul>
+                <li>Programarea Dinamică este eficientă pentru probleme cu suprapunerea subproblemelor și substructura optimă.</li>
+                <li>Este crucial să stocăm rezultatele intermediare pentru a evita calcule redundante.</li>
+                <li>Poate fi aplicată în diverse domenii, inclusiv algoritmi pe grafuri, optimizare, și numărare combinatorică.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Recursivitate Generală</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-code-branch"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Recursivitate Generală</h1>
+                    <p>Descoperă cum funcționează recursivitatea, aplicațiile sale și exemple de funcții recursive.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>1. Ce este Recursivitatea?</h3>
+            <p>Recursivitatea este un proces prin care o funcție se apelează pe ea însăși pentru a rezolva o problemă mai mică.</p>
+
+            <h4>2. Exemple de Funcții Recursive</h4>
+
+            <h5>a) Număr de Cifre</h5>
+            <pre><code>int nrCif(int n){
+    if(n <= 9)
+        return 1;
+    return 1 + nrCif(n / 10);
+}</code></pre>
+            <p><strong>Model matematic:</strong> <code>nrCif(n) = 1</code> dacă <code>n <= 9</code>, altfel <code>1 + nrCif(n / 10)</code>.</p>
+
+            <h5>b) Fibonacci</h5>
+            <pre><code>int fibo(int n){
+    if(n <= 1)
+        return 1;
+    return fibo(n - 1) + fibo(n - 2);
+}</code></pre>
+            <p>Generează seria Fibonacci.</p>
+
+            <h5>c) Factorial</h5>
+            <pre><code>int fact(int n){
+    if(n <= 1)
+        return 1;
+    return n * fact(n - 1);
+}</code></pre>
+            <p>Calculează factorialul unui număr: <code>fact(n) = n * fact(n-1)</code>.</p>
+
+            <h5>d) Puteri</h5>
+            <pre><code>int alab(int a, int b){
+    if(b == 0)
+        return 1;
+    return a * alab(a, b-1);
+}</code></pre>
+            <p>Calculează <code>a^b</code> utilizând metoda recursivă.</p>
+
+            <h4>3. Recursivitate pentru Prelucrarea Vectorilor</h4>
+            <h5>a) Citirea unui Vector</h5>
+            <pre><code>void citireVector(int a[], int n){
+    if(n == 0)
+        return;
+    citireVector(a, n-1);
+    cin >> a[n];
+}</code></pre>
+
+            <h5>b) Afișarea unui Vector</h5>
+            <pre><code>void afisareVector(int a[], int n){
+    if(n == 0)
+        return;
+    afisareVector(a, n-1);
+    cout << a[n] << ' ';
+}</code></pre>
+
+            <h4>4. Exponențiere Rapidă</h4>
+            <h5>a) Metodă Iterativă</h5>
+            <pre><code>int expRapidaIterativa(int a, int b){
+    int prod = 1;
+    while(b != 0){
+        if(b % 2 == 1)
+            prod *= a;
+        a *= a;
+        b /= 2;
+    }
+    return prod;
+}</code></pre>
+            <p>Complexitate: <strong>O(log<sub>2</sub>(b))</strong>.</p>
+
+            <h5>b) Metodă Recursivă</h5>
+            <pre><code>int expRapidRecursiva(int a, int b){
+    if(b == 0)
+        return 1;
+    int m = expRapidRecursiva(a, b/2);
+    if(b % 2 == 0)
+        return m * m;
+    return m * m * a;
+}</code></pre>
+            <p>Complexitate: <strong>O(log<sub>2</sub>(b))</strong>.</p>
+
+            <h4>5. Exerciții Suplimentare</h4>
+            <ul>
+                <li>Scrie o funcție recursivă care elimină cifrele pare dintr-un număr.</li>
+                <li>Scrie o funcție recursivă care calculează suma elementelor unui vector.</li>
+                <li>Optimizează funcția Fibonacci pentru a avea complexitate liniară.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>
+    

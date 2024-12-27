@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Matrici și Tablouri Bidimensionale</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <span class="fa-solid fa-table"></span>
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>Matrici și Tablouri Bidimensionale</h1>
+                    <p>Explorează bazele lucrului cu matrici în C++, incluzând exemple și observații despre memorie și funcționare.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <article class="element">
+            <h3>Introducere</h3>
+            <p>O matrice în programare este un tablou bidimensional care poate fi privit ca un set de vectori. Fiecare linie a unei matrici este, de fapt, un vector, iar principiile aplicate vectorilor sunt valabile și aici.</p>
+
+            <h4>1. Declarație și Inițializare</h4>
+            <p>O matrice de dimensiuni maxime 101x101 poate fi declarată astfel:</p>
+            <pre><code>int a[101][101]; // 101 linii și 101 coloane</code></pre>
+            <p><strong>Exemplu:</strong> Inițializarea unei matrici:</p>
+            <pre><code>cin >> n >> m; // n = linii, m = coloane
+for(int i = 1; i <= n; ++i)
+    for(int j = 1; j <= m; ++j)
+        cin >> a[i][j];</code></pre>
+
+            <h4>2. Afișarea unei Matrici</h4>
+            <p>Funcția de afișare folosește liniile matricei ca vectori:</p>
+            <pre><code>void afisare_vector(int a[], int n){
+    for(int i = 1; i <= n; ++i)
+        cout << a[i] << ' ';
+}</code></pre>
+            <p>Apelarea acestei funcții pentru fiecare linie:</p>
+            <pre><code>for(int i = 1; i <= n; ++i, cout << '\\n')
+    afisare_vector(a[i], m);</code></pre>
+
+            <h4>3. Observații despre Memorie</h4>
+            <ul>
+                <li>Matricile sunt stocate ca vectori de vectori în memorie.</li>
+                <li>Distanța în memorie între două linii consecutive depinde de numărul de coloane.</li>
+                <li>Toate regulile aplicate vectorilor se aplică și matricilor.</li>
+            </ul>
+
+            <h4>4. Exemplu Practic</h4>
+            <p>Un exemplu simplu de citire și afișare a unei matrice:</p>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int a[101][101], n, m;
+    cin >> n >> m;
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            cin >> a[i][j];
+
+    for(int i = 1; i <= n; ++i, cout << '\\n')
+        for(int j = 1; j <= m; ++j)
+            cout << a[i][j] << ' ';
+    return 0;
+}</code></pre>
+
+            <h4>5. Idei de Extindere</h4>
+            <ul>
+                <li>Adăugarea unor funcții pentru transpunerea matricelor.</li>
+                <li>Calcularea sumei elementelor de pe o diagonală.</li>
+                <li>Determinarea elementului maxim din matrice.</li>
+                <li>Compararea a două matrici.</li>
+            </ul>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Oniga Alin Nicolae. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>
