@@ -1,2 +1,3 @@
 # AtestatZeceLaInfo
- Atestatul meu pentru clasa a 12,
+ Atestatul meu pentru clasa a 12
+ 
